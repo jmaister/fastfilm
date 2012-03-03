@@ -1,40 +1,48 @@
 $(document).ready(function(){
+  var api_key = "23afca60ebf72f8d88cdcae2c4f31866";
+  var api_url = "http://api.themoviedb.org/2.1/Movie.search/en/json/" + api_key + "/";
 
-   $('#term').focus(function(){
-      var full = $("#poster").has("img").length ? true : false;
-      if(full == false){
-         $('#poster').empty();
-      }
-   });
+  $('#term').focus(function(){
+    var full = $("#poster").has("img").length ? true : false;
+    if(full == false){
+      $('#poster').empty();
+    }
+  });
 
-   var getPoster = function(){
-        var film = $('#term').val();
-         if(film == ''){
-            $('#poster').html("<h2 class='loading'>Ha! We haven't forgotten to validate the form! Please enter something.</h2>");
-         } else {
-            $('#poster').html("<h2 class='loading'>Your poster is on its way!</h2>");
+  var getPoster = function(){
+    var film = $('#term').val();
+    if(film != ''){
+      $('#loading').show();
 
-            $.getJSON("http://api.themoviedb.org/2.1/Movie.search/en/json/23afca60ebf72f8d88cdcae2c4f31866/" + film + "?callback=?", function(json) {
-               if (json != "Nothing found."){
-                     $('#poster').html('<h2 class="loading">Well, gee whiz! We found you a poster, skip!</h2><img id="thePoster" src=' + json[0].posters[0].image.url + ' />');
-                  } else {
-                     $.getJSON("http://api.themoviedb.org/2.1/Movie.search/en/json/23afca60ebf72f8d88cdcae2c4f31866/goonies?callback=?", function(json) {
-                        console.log(json);
-                        $('#poster').html('<h2 class="loading">We\'re afraid nothing was found for that search. Perhaps you were looking for The Goonies?</h2><img id="thePoster" src=' + json[0].posters[0].image.url + ' />');
-                     });
-                  }
-             });
+      $.getJSON(api_url + film + "?callback=?", function(json) {
+        $('#loading').hide();
 
+        if (json != "Nothing found.") {
+          var s = "";
+          var posters = json[0].posters;
+          for (var i=0; i<posters.length; i++) {
+            var poster = posters[i];
+            s = s + '<img id="thePoster" src="' + poster.image.url + '" />';
           }
+          $('#poster').html(s);
+          $('#overview').html("<p>"+json[0].overview+"</p>");
+        } else {
+          console.log(json);
+          $('#poster').html('<h2 class="loading">We\'re afraid nothing was found for that search.</h2>');
+          $('#overview').html("");
+        }
+      });
 
-        return false;
-   }
+    }
 
-   $('#search').click(getPoster);
-   $('#term').keyup(function(event){
-       if(event.keyCode == 13){
-           getPoster();
-       }
-   });
+    return false;
+  }
+
+  $('#search').click(getPoster);
+  $('#term').keyup(function(event){
+    if(event.keyCode == 13){
+      getPoster();
+    }
+  });
 
 });
