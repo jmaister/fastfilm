@@ -25,7 +25,8 @@ $(document).ready(function(){
             s = s + '<img id="thePoster" src="' + poster.image.url + '" />';
           }
           $('#poster').html(s);
-          $('#overview').html("<p>"+json[0].overview+"</p>");
+          $('#overview').html("<p>"+json[0].released+"</p><p>"+json[0].overview+"</p>");
+          $('#term').value = json[0].original_name;
         } else {
           console.log(json);
           $('#poster').html('<h2 class="loading">We\'re afraid nothing was found for that search.</h2>');
