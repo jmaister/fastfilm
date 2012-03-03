@@ -1,0 +1,17 @@
+body {
+  background-color: black;
+
+  color: whitesmoke;
+  font-family: Helvetica;
+
+  font-size: 30px;
+}
+
+#term, #search {
+  font-size: 30px;
+}
+
+#footer {
+  font-size: 20px;
+}
+
