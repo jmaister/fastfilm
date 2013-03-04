@@ -4,7 +4,7 @@ body, .container {
   color: #EEEEEE;
   font-family: Coustard, Verdana;
 
-  font-size: 30px;
+  font-size: 25px;
 }
 
 header, #fetch, .center {
@@ -13,6 +13,10 @@ header, #fetch, .center {
 
 #term, #search {
   font-size: 30px;
+}
+
+#term {
+  width: 25em;
 }
 
 #footer, #overview {
@@ -24,4 +28,18 @@ header, #fetch, .center {
     width: 50px;
     height: 50px;
     font-size: 30px;
+}
+
+
+.ui-autocomplete {
+    max-height: 100px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+}
+/* IE 6 doesn't support max-height
+* we use height instead, but this forces the menu to always be this tall
+*/
+* html .ui-autocomplete {
+    height: 100px;
 }
