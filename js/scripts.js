@@ -11,8 +11,8 @@ $(document).ready(function() {
         }
     });
 
-    var getPoster = function() {
-        var film = $('#term').val();
+    var getPoster = function(film) {
+        film = film || $('#term').val();
         current_data.film = film;
         if (film != '') {
             $('#loading').show();
@@ -72,7 +72,7 @@ $(document).ready(function() {
         },
         minLength: 2,
         select: function( event, ui ) {
-            getPoster();
+            getPoster(ui.item.value);
         },
         open: function() {
             $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
