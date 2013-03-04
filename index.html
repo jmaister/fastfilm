@@ -1,33 +1,45 @@
 <!DOCTYPE html>
 <html>
-<head>
-   <title>Fast Film</title>
-   <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
-   <!--jQuery, linked from a CDN-->
-   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-   <!-- script src="js/jquery-1.7.1.js"></script-->
-   <script src="js/scripts.js"></script>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <title>Fast Film Poster</title>
+        <!--link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" /-->
+        <link rel="stylesheet" href="css/style.css" />
+        <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+        <!--script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script-->
 
-   <link rel="stylesheet" href="css/html5reset-1.6.1.css" />
-   <link rel="stylesheet" href="css/style.css" />
-</head>
-<body>
-<div class="container">
-   <header>
-      <h1>Fast Film</h1>
-   </header>
-   <section id="fetch">
-      <input type="text" placeholder="Enter a movie title" id="term" />
-      <button id="search">Find</button>
-      <img id="loading" src="img/loading.gif" style="display: none;" />
-   </section>
-   <section id="overview">
-   </section>
-   <section id="poster">
-   </section>
-   <footer id="footer">
-      <p>Created by Jordi Burgos</p>
-   </footer>
-</div>
-</body>
+        <!-- script src="js/jquery-1.7.1.js"></script-->
+        <script src="js/scripts.js"></script>
+
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <h1>Fast Film Poster</h1>
+            </header>
+            <div id="fetch">
+                <input type="text" placeholder="Enter a movie title" id="term" />
+                <button id="search">
+                    Find
+                </button>
+                <img id="loading" src="img/loading.gif" style="display: none;" />
+            </div>
+            <div id="overview"></div>
+            <div id="poster_section">
+                <div style="width: 100%;" class="center">
+                    <span><button id='less'>-</button></span>
+                    <span id="poster"></span>
+                    <span><button id='more'>+</button></span>
+                </div>
+            </div>
+            <div id="footer">
+                <p>
+                    Created by Jordi Burgos
+                </p>
+            </div>
+        </div>
+    </body>
 </html>
