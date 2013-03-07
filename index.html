@@ -8,18 +8,51 @@
         <title>Fast Film Poster</title>
 
 
-        <!--link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" /-->
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
         <link rel="stylesheet" href="css/style.css" />
 
 
         <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
-        <!--script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script-->
         <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+        <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
         <script language="javascript" src="js/scripts.js"></script>
 
     </head>
     <body>
+    <div data-role="page" id="page" data-theme="a">
+        <div data-role="header" data-position="fixed" data-theme="a">
+            <h1>Fast Film Poster</h1>
+        </div>
+        <!-- container -->
+        <div data-role="content">
+            <!-- term -->
+            <div>
+                <input type="search" name="term" id="term" value="Search" data-theme="a" />
+            </div>
+            <!-- buttons + -  -->
+            <div data-role="controlgroup" data-type='horizontal'>
+                <!-- less -->
+                <a data-role="button" id="less" data-icon='minus' data-iconpos='left' data-theme="a">
+                    Less
+                </a>
+                <!-- more -->
+                <a data-role="button" id="more" data-icon='plus' data-iconpos='left' data-theme="a">
+                    More
+                </a>
+            </div>
+            <!-- poster -->
+            <div id="overview"></div>
+            <div id="poster"></div>
+        </div>
+        <!-- footer -->
+        <div data-role="footer" data-position="fixed">
+            Created by Jordi Burgos
+        </div>
+    </div>
+
+<!--
+
         <div class="container">
             <header>
                 <h2>Fast Film Poster</h2>
@@ -45,5 +78,6 @@
                 </p>
             </div>
         </div>
+-->
     </body>
 </html>
