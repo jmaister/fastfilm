@@ -12,7 +12,9 @@ $(document).ready(function() {
     });
 
     var getPoster = function(film) {
-        film = film || $('#term').val();
+        if (!film) {
+            film = $('#term').val();
+        }
         current_data.film = film;
         if (film != '') {
             $('#loading').show();
@@ -101,12 +103,12 @@ var app = {
 
         var img = '<img id="thePoster" src="' + current_data.posters[current_data.current].image.url + '" />';
 
-        $('#poster_section').show();
+        $('#buttons').show();
         $('#poster').html(img);
     },
     
     hidePoster: function() {
-        $('#poster_section').hide();
+        $('#buttons').hide();
         $('#poster').empty();
     },
 

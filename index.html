@@ -28,56 +28,32 @@
         <div data-role="content">
             <!-- term -->
             <div>
-                <input type="search" name="term" id="term" value="Search" data-theme="a" />
-            </div>
-            <!-- buttons + -  -->
-            <div data-role="controlgroup" data-type='horizontal'>
-                <!-- less -->
-                <a data-role="button" id="less" data-icon='minus' data-iconpos='left' data-theme="a">
-                    Less
+                <input type="search" name="term" id="term" placeholder="Search" data-theme="a"/>
+                <!--
+                <a data-role="button" id="search" data-icon='search' data-iconpos='left' data-theme="a">
+                    <span class="ui-btn-text">Find</span>
                 </a>
-                <!-- more -->
-                <a data-role="button" id="more" data-icon='plus' data-iconpos='left' data-theme="a">
-                    More
-                </a>
+                -->
             </div>
             <!-- poster -->
             <div id="overview"></div>
+            <!-- buttons + -  -->
+            <div data-role="controlgroup" data-type='horizontal' id="buttons">
+                <!-- less -->
+                <a data-role="button" id="less" data-icon='minus' data-theme="a">
+                    Smaller
+                </a>
+                <!-- more -->
+                <a data-role="button" id="more" data-icon='plus' data-theme="a">
+                    Bigger
+                </a>
+            </div>
             <div id="poster"></div>
         </div>
         <!-- footer -->
         <div data-role="footer" data-position="fixed">
-            Created by Jordi Burgos
+            <span>Created by Jordi Burgos</span>
         </div>
     </div>
-
-<!--
-
-        <div class="container">
-            <header>
-                <h2>Fast Film Poster</h2>
-            </header>
-            <div id="fetch">
-                <input type="text" placeholder="Enter a movie title" id="term" />
-                <button id="search">
-                    Find
-                </button>
-                <img id="loading" src="img/loading.gif" style="display: none;" />
-            </div>
-            <div id="overview"></div>
-            <div id="poster_section">
-                <div style="width: 100%;" class="center">
-                    <span><button id='less'>-</button></span>
-                    <span id="poster"></span>
-                    <span><button id='more'>+</button></span>
-                </div>
-            </div>
-            <div id="footer">
-                <p>
-                    Created by Jordi Burgos
-                </p>
-            </div>
-        </div>
--->
-    </body>
+</body>
 </html>
