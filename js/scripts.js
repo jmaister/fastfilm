@@ -1,7 +1,5 @@
 $(document).ready(function() {
-    var api_key = "23afca60ebf72f8d88cdcae2c4f31866";
-    var api_url = "http://api.themoviedb.org/2.1/Movie.search/en/json/" + api_key + "/";
-    
+
     app.initialize();
 
     $('#term').focus(function() {
@@ -11,15 +9,83 @@ $(document).ready(function() {
         }
     });
 
-    var getPoster = function(film) {
-        if (!film) {
-            film = $('#term').val();
+    var doSearch = function() {
+        var value = $('#term').val();
+        if (value) {
+            app.fillResults($('#term').val());
         }
+    };
+
+    $('#search').click(doSearch);
+    $('#clear').click(app.clearResults);
+
+    $('#term').keyup(doSearch);
+
+    $('#less').click(function() {
+        app.showPoster(-1);
+    });
+    $('#more').click(function() {
+        app.showPoster(1);
+    });
+
+
+
+    $( "#listview" ).bind( "click", function(event, ui) {
+       debugger;
+    });
+});
+
+var current_data = {
+    film : null,
+    posters : null,
+    current : null
+};
+
+var config = {
+    api_key: "23afca60ebf72f8d88cdcae2c4f31866",
+    api_url: "http://api.themoviedb.org/2.1/Movie.search/en/json/23afca60ebf72f8d88cdcae2c4f31866/",
+};
+
+var app = {
+
+    fillResults: function(film) {
+        $.ajax({
+            url: config.api_url + film + "?callback=?",
+            dataType: "jsonp",
+            success: function( data ) {
+                var s = "<li data-role='list-divider'>Films Found</li>";
+                for (var i=0; i<data.length; i++) {
+                    /*
+                    s += "<li><a href='#posterpage' onclick='app.getPosters(\"" + data[i].original_name +"\")'>"
+                        + data[i].original_name
+                        + "</a></li>";
+                    */
+                    s += "<li><a href='#posterpage' onclick='app.getPosters(\"" + data[i].original_name +"\")'>"
+                        + "    <p class='ui-li-aside ui-li-desc'><strong>" + data[i].rating + "</strong> / 10</p>"
+                        + "    <h3 class='ui-li-heading'>" + data[i].original_name + "</h3>"
+                        + "    <p class='ui-li-desc'>" + data[i].name + " - " + data[i].released + "</p>"
+                        + "</a></li>";
+                }
+                var list = $('#resultlist');
+                list.html(s);
+                list.listview('refresh');
+            }
+        });
+    },
+
+    clearResults: function() {
+        var list = $('#resultlist');
+        list.html("");
+        list.listview('refresh');
+    },
+
+
+    getPosters : function(film) {
         current_data.film = film;
         if (film != '') {
             $('#loading').show();
 
-            $.getJSON(api_url + film + "?callback=?", function(json) {
+            $.getJSON(config.api_url + film + "?callback=?", function(json) {
                 $('#loading').hide();
 
                 if (json != "Nothing found.") {
@@ -28,7 +94,6 @@ $(document).ready(function() {
                     if (current_data.posters.length < 2) {
                         current_data.current = 0;
                     }
-
                     app.showPoster();
 
                     $('#overview').html("<p>" + json[0].released + "</p><p>" + json[0].overview + "</p>");
@@ -40,59 +105,7 @@ $(document).ready(function() {
             });
 
         }
-
-        return false;
-    }
-
-    $('#search').click(getPoster);
-    $('#term').keyup(function(event) {
-        if (event.keyCode == 13) {
-            getPoster();
-        }
-    });
-    $('#less').click(function() {
-        app.showPoster(-1);
-    });
-    $('#more').click(function() {
-        app.showPoster(1);
-    });
-
-    $( "#term" ).autocomplete({
-        source: function( request, response ) {
-            $.ajax({
-                url: api_url + request.term + "?callback=?",
-                dataType: "jsonp",
-                success: function( data ) {
-                    response( $.map( data, function( item ) {
-                        return {
-                            label: item.original_name,
-                            value: item.original_name
-                        }
-                    }));
-                }
-            });
-        },
-        minLength: 2,
-        select: function( event, ui ) {
-            getPoster(ui.item.value);
-        },
-        open: function() {
-            $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
-        },
-        close: function() {
-            $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
-        }
-    });
-
-});
-
-var current_data = {
-    film : null,
-    posters : null,
-    current : null
-};
-
-var app = {
+    },
 
     showPoster : function(jump) {
         if (jump) {

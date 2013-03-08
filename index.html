@@ -8,33 +8,61 @@
         <title>Fast Film Poster</title>
 
 
-        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+        <!--link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" /-->
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
         <link rel="stylesheet" href="css/style.css" />
 
 
         <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
-        <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+        <!--script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script-->
         <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
-        <script language="javascript" src="js/scripts.js"></script>
+        <script src="js/scripts.js"></script>
 
     </head>
     <body>
-    <div data-role="page" id="page" data-theme="a">
+        
+     <!-- SEARCH PAGE -->
+    <div data-role="page" id="searchpage" data-theme="a">
         <div data-role="header" data-position="fixed" data-theme="a">
-            <h1>Fast Film Poster</h1>
+            <h1>Fast Film Poster - Search</h1>
         </div>
         <!-- container -->
         <div data-role="content">
             <!-- term -->
             <div>
-                <input type="search" name="term" id="term" placeholder="Search" data-theme="a"/>
-                <!--
-                <a data-role="button" id="search" data-icon='search' data-iconpos='left' data-theme="a">
-                    <span class="ui-btn-text">Find</span>
-                </a>
-                -->
+                <input type="search" name="term" id="term" placeholder="Search" data-theme="a" value="pulp" />
             </div>
+            <div data-type="horizontal" data-role="controlgroup">
+                <a data-role="button" id="search" data-icon='search' data-iconpos='left' data-theme="a">
+                    Find
+                </a>
+                <a data-role="button" id="clear" data-icon='delete' data-iconpos='left' data-theme="a">
+                    Clear
+                </a>
+            </div>
+
+            <!-- list -->
+            <div>
+                <ul data-role="listview" data-inset="true" data-theme="a" data-inline="true" id="resultlist">
+                </ul>
+            </div>
+        </div>
+        <!-- footer -->
+        <div data-role="footer" data-position="fixed">
+            <span>Created by Jordi Burgos</span>
+        </div>
+    </div>
+    
+    
+    
+     <!-- POSTER PAGE -->
+    <div data-role="page" id="posterpage" data-theme="a">
+        <div data-role="header" data-position="fixed" data-theme="a">
+            <a data-role="button" href="#searchpage" data-icon="back">Back</a>
+            <h1>Fast Film Poster - Poster</h1>
+        </div>
+        <!-- container -->
+        <div data-role="content">
             <!-- poster -->
             <div id="overview"></div>
             <!-- buttons + -  -->
@@ -55,5 +83,6 @@
             <span>Created by Jordi Burgos</span>
         </div>
     </div>
+    
 </body>
 </html>
